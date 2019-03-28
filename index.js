@@ -13,10 +13,17 @@ io.on('connection', function(socket){
 });
 
 io.on('connection', function(socket){
-    console.log('a user connected');
-    socket.on('disconnect', function(){
-        console.log('user disconnected');
+
+    console.log('Yay, connection was recorded')
+
+    //emit message to all front-end clients
+    io.emit('chat message', 'Some **** Joined the gangbang Party');
+
+    //handling disconnects
+    socket.on('disconnect', function() {
+        io.emit('chat message', '**** left early');
     });
+
 });
 
 http.listen(3000, function(){
