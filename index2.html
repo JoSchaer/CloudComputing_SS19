@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
+    <style>
+
+        body {
+            /*background-color: darkcyan;*/
+            background-image: url("90er_04.jpg");
+            background-size: cover;
+            font-family: 'Comfortaa', cursive;
+        }
+
+        /* Bordered form */
+        form {
+            border: 3px solid #f1f1f1;
+        }
+
+        /* Full-width inputs */
+        input[type=text], input[type=password] {
+            width: 30%;
+            padding: 12px 20px;
+            margin: auto;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        /* Set a style for all buttons */
+        button {
+            background-color: rgba(0%, 0, 0, 0.75);
+            color: white;
+            padding: 14px 20px;
+            margin: auto;
+            border: none;
+            cursor: pointer;
+            width: 30%;
+
+        }
+
+        /* Add a hover effect for buttons */
+        button:hover {
+            opacity: 0.8;
+        }
+
+
+        /* Center the avatar image inside this container */
+        .imgcontainer {
+            text-align: center;
+            margin: 24px 0 12px 0;
+            padding-top: 5%;
+            border-color: black;
+
+        }
+
+        /* Avatar image */
+        img.avatar {
+            width: 20%;
+            border-radius: 50%;
+            border-style: solid;
+            border-width: thick;
+
+        }
+
+        /* Add padding to containers */
+        .container {
+            padding: 16px;
+            margin: auto;
+            text-align: center;
+        }
+
+        #headline {
+            font-family: 'Monoton', cursive !important;
+            color: black;
+            margin: auto;
+            text-align: center;
+            padding-top: 2%;
+            font-size: 600%;
+        }
+
+
+    </style>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Monoton');
+    </style>
+    <script src="/socket.io/socket.io.js"></script>
+    <meta charset="UTF-8">
+    <title>CoolerChat</title>
+</head>
+<body>
+
+
+<p id="headline">COOLER CHAT</p>
+
+<div class="imgcontainer">
+    <img src="avatar.png" alt="Avatar" class="avatar">
+</div>
+
+<div class="container">
+    <input id="username" type="text" placeholder="Enter Username" required>
+    <button id="login" type="submit">Login</button>
+
+
+</div>
+
+
+
+</body>
+</html>
