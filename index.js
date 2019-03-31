@@ -22,8 +22,8 @@ io.on('connection', function (socket) {
         console.log(userList.length);
     });
 
-    io.on('chat message', function (msg) {
-       io.sockets.emit('chat message', msg);
+    socket.on('chat message', function (msg) {
+       sockets.emit('chat message', msg);
     });
 });
 

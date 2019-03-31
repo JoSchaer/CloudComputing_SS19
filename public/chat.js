@@ -16,7 +16,6 @@ loginBtn.addEventListener('click', function () {
         username: username.value
     });
     window.location.href = "chat.html";
-    document.getElementById('userNamePlace').innerText = username.value;
 });
 
 sendBtn.addEventListener('click',function () {
@@ -27,6 +26,7 @@ sendBtn.addEventListener('click',function () {
 });
 
 socket.on('chat message', function (msg) {
+    console.log(msg.username + '   '+ msg.message);
     messages.innerHTML += '<p><strong>'+ msg.username+':</strong>'+msg.message+'</p>';
 });
 
