@@ -16,8 +16,17 @@ var userList = [];
 io.on('connection', function (socket) {
     socket.on('chat', function (data) {
         socket.emit(data.username + ' joined the Chat')
-        console.log(data.username + ' connectet to the Chat');
+        console.log(data.username + ' connected to the Chat');
         userList.push(socket);
+
+        console.log(userList.length);
+
+    });
+
+    socket.on('disconnect', function(){
+        socket.emit(data.username + ' left the Chat')
+        console.log(data.username + ' disconnected to the Chat');
+        userList.pull(socket);
 
         console.log(userList.length);
     });
