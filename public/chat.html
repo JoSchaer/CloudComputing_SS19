@@ -1,26 +1,47 @@
 <!doctype html>
 <html>
 <head>
-    <title>Socket.IO chat</title>
-
+    <title>CoolerChat</title>
+    <link rel="stylesheet" href="GlobalStyle.css">
 </head>
 <body>
 
-<div id="informationBar">
-    <label>Online  People</label>
-    <label>Last Chats</label>
-</div>
-<script src="/socket.io/socket.io.js"></script>
-<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<div id="content">
 
+    <div id="information">
+        <div id="userList" class="generalSettings">
+            <h4>ONLINE USERS</h4>
+        </div>
+        <div id="lastChat" class="generalSettings">
+            <h4>LAST CHATS</h4>
+        </div>
+    </div>
+
+    <div id="rightSide">
+        <div id="userBar" class="generalSettings">
+            <h4 id="userNamePlace"></h4>
+        </div>
+        <div id="actualchat" class="generalSettings">
+            <div id="messages"></div>
+            <form id="messaging">
+                <input id="m" autocomplete="off" class="generalSettings" placeholder="Enter Message"/>
+                <button id="sending" class="generalSettings">Send</button>
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+<!--
 <div id="chatBar">
-    <ul id="messages"></ul>
-    <form action="">
-        <input id="m" autocomplete="off"/>
-        <button>Send</button>
-    </form>
-</div>
 
+-->
+
+<script src="/socket.io/socket.io.js"></script>
 <script src="/chat.js"></script>
 </body>
 </html>

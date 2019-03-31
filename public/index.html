@@ -5,9 +5,7 @@
     <style>
 
         body {
-            /*background-color: darkcyan;*/
-            background-image: url("../90er_04.jpg");
-            background-size: cover;
+            background-color: #840032;
             font-family: 'Comfortaa', cursive;
         }
 
@@ -28,7 +26,8 @@
 
         /* Set a style for all buttons */
         button {
-            background-color: rgba(0%, 0, 0, 0.75);
+            background-color: #2f2d2e;
+            border: 2px solid #ff1053;
             color: white;
             padding: 14px 20px;
             margin: auto;
@@ -71,7 +70,7 @@
 
         #headline {
             font-family: 'Monoton', cursive !important;
-            color: black;
+            color: #2f2d2e;
             margin: auto;
             text-align: center;
             padding-top: 2%;
@@ -83,7 +82,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css?family=Monoton');
     </style>
-    <script src="/socket.io/socket.io.js"></script>
+
     <meta charset="UTF-8">
     <title>CoolerChat</title>
 </head>
@@ -100,7 +99,7 @@
     <input id="username" type="text" placeholder="Enter Username" required>
     <button id="login" type="submit">Login</button>
 </div>
-
+<script src="/socket.io/socket.io.js"></script>
 <script src="/chat.js"></script>
 
 </body>

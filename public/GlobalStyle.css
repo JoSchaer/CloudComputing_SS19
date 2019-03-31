@@ -1,0 +1,66 @@
+html, body {
+    height: 98%;
+    font-family: 'Comfortaa', cursive;
+    background-color: #840032;
+}
+
+#content {
+    display: grid;
+    grid-template-columns: 25% 75%;
+    grid-template-rows: 100%;
+    height: 100%;
+}
+
+.generalSettings {
+    background-color: #2f2d2e;
+    border: 2px solid #ff1053;
+}
+
+h4 {
+    text-align: center;
+    background-color: #e6c229;
+    width: 100%;
+}
+
+#userList {
+    height: 50%;
+}
+
+#lastChat {
+    height: 49%;
+    margin-top: 1%;
+}
+
+#userBar{
+    height: 7%;
+    margin-left: 1%;
+}
+
+#actualchat {
+    height: 91%;
+    margin-top: 1%;
+    margin-left: 1%;
+}
+
+#m{
+    width: 88%;
+    height: 85%;
+    background-color: #e6c229;
+}
+#sending{
+    width: 10%;
+    height: 100%;
+    margin-left: 0.25%;
+}
+
+#messaging{
+    height: 8%;
+    width: 73%;
+    position: absolute;
+    bottom: 2.5%;
+    margin-left: 0.25%;
+}
+
+::placeholder{
+    color: #2f2d2e;
+}
