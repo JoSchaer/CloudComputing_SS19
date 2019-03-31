@@ -26,7 +26,7 @@ io.on('connection', function (socket) {
     socket.on('disconnect', function(){
         socket.emit(data.username + ' left the Chat')
         console.log(data.username + ' disconnected to the Chat');
-        userList.pull(socket);
+        userList.pop(socket);
 
         console.log(userList.length);
     });
