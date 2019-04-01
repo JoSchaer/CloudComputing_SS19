@@ -1,10 +1,16 @@
 {
-  "name": "CloudComputin Chat",
+  "name": "CloudComputingChat",
   "version": "0.0.1",
   "description": "chat from Daniel Melnicki and Jonathan Schaertel",
+  "scripts": {
+    "test": "nodemon --inspect server.js",
+    "start": "node server.js",
+    "hi": "echo 1"
+  },
   "dependencies": {
     "bootstrap": "^3.4.1",
     "express": "^4.15.2",
+    "nodemon": "^1.18.10",
     "socket.io": "^2.2.0"
   }
 }

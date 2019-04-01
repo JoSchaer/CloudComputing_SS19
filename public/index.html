@@ -5,7 +5,8 @@
     <style>
 
         body {
-            background-color: #840032;
+            background-image: url("90er_04.jpg");
+            background-size: cover;
             font-family: 'Comfortaa', cursive;
         }
 
@@ -39,7 +40,8 @@
 
         /* Add a hover effect for buttons */
         button:hover {
-            opacity: 0.8;
+            opacity: 0.9;
+            transform: translateY(2px);
         }
 
 
@@ -92,15 +94,17 @@
 <p id="headline">COOLER CHAT</p>
 
 <div class="imgcontainer">
-    <img src="../avatar.png" alt="Avatar" class="avatar">
+    <img src="avatar.png" alt="Avatar" class="avatar">
 </div>
 
-<div class="container">
-    <input id="username" type="text" placeholder="Enter Username" required>
-    <button id="login" type="submit">Login</button>
+<div class="container" id="abb">
+    <input v-model.trim.lazy="user" type="text" placeholder="Enter Username" required minlength="4">
+    <button @click="login">Login</button>
 </div>
+
 <script src="/socket.io/socket.io.js"></script>
-<script src="/chat.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="/login.js"></script>
 
 </body>
 </html>

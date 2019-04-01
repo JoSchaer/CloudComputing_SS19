@@ -1,45 +1,58 @@
 <!doctype html>
 <html>
+
 <head>
-    <title>CoolerChat</title>
-    <link rel="stylesheet" href="GlobalStyle.css">
+  <title>CoolerChat</title>
+  <link rel="stylesheet" href="GlobalStyle.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
 </head>
+
 <body>
 
-<div id="content">
+  <div class="columns" id="app">
 
-    <div id="information">
-        <div id="userList" class="generalSettings">
-            <h4>ONLINE USERS</h4>
-        </div>
-        <div id="lastChat" class="generalSettings">
-            <h4>LAST CHATS</h4>
-        </div>
+    <div class="column">
+
+      <h1 class="title">ONLINE USERS</h1>
+      <h2 class="subtitle">{{user}}</h2>
+      <ul>
+        <li v-for="(v,k) in users">
+          <input :id="k" :value="k" type="checkbox" v-model="checkedUsers" />
+          <label :for="k" class="tag is-link">{{v}}</label>
+        </li>
+      </ul>
     </div>
 
-    <div id="rightSide">
-        <div id="actualchat" class="generalSettings">
-            <div id="messages"></div>
-        </div>
-        <div id="chatBar" class="generalSettings">
-            <form id="messaging">
-                <input id="m" autocomplete="off" placeholder="Enter Message"/>
-                <button id="sending">Send</button>
-            </form>
-        </div>
+
+
+    <div class="column">
+      <div class="container h" id="chat">
+        <ul>
+          <li v-for="msg in messages" :class="[msg.type != Type.msg ? 'notification':'']">
+            <span
+              class="tag">{{ new Date(msg.timestamp).toLocaleDateString('de-DE', { year: '2-digit', month: '2-digit', day: '2-digit', hour:'2-digit', minute:'2-digit'}) }}</span>
+            <span :data-id="msg.username" class="tag is-link">{{msg.username}}</span>
+            {{msg.text}}
+            <a class="tag is-warning" v-if="msg.file" :href="msg.file.bin" target="_blank">{{msg.file.name}}</a>
+          </li>
+        </ul>
+      </div>
+      <form class="container" action="" @submit.prevent="send">
+        <input autocomplete="off" placeholder="Enter Message" v-model.trim.lazy="inp" />
+        <input type="file" @change="processFile($event)" ref="upload" />
+        <button value="submit">Send</button>
+
+      </form>
+
+
     </div>
-</div>
+  </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/defs.js"></script>
+  <script src="/chat.js"></script>
 
-</div>
-
-<!--
-<div id="chatBar">
-
--->
-
-<script src="/socket.io/socket.io.js"></script>
-<script src="/chat.js"></script>
 </body>
-</html>
 
+</html>
