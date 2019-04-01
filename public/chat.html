@@ -11,7 +11,7 @@
 
   <div class="columns" id="app">
 
-    <div class="column">
+    <div class="column" id="informationPanel">
 
       <h1 class="title">ONLINE USERS</h1>
       <h2 class="subtitle">{{user}}</h2>
@@ -37,11 +37,10 @@
           </li>
         </ul>
       </div>
-      <form class="container" action="" @submit.prevent="send">
-        <input autocomplete="off" placeholder="Enter Message" v-model.trim.lazy="inp" />
-        <input type="file" @change="processFile($event)" ref="upload" />
-        <button value="submit">Send</button>
-
+      <form class="container" action="" @submit.prevent="send" id="messageContainer">
+        <input autocomplete="off" placeholder="Enter Message" v-model.trim.lazy="inp" id="msgBar"/>
+        <input type="file" @change="processFile($event)" ref="upload" id="upload"/>
+        <button value="submit" id="send">Send</button>
       </form>
 
 

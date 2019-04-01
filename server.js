@@ -13,11 +13,10 @@ app.use('favicon.*', express.static('public'));
 var io = socket(server);
 
 var userList = {};
-
+//functions for connectet Users
 io.on('connection', function (client) {
 
-  // client.on('userList', param => client.emit('userList', { userList }));
-
+  
   client.on('chat message', function (data) {
     let recipients = data.to
 

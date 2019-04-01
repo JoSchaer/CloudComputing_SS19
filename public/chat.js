@@ -1,29 +1,27 @@
 //Connection to Server
 var socket = io.connect('http://localhost:3000');
 
-
+//Generate new Vue Object
 var app = new Vue({
   el: '#app',
   data: {
-    messages: [Msg("Best Server EU West", Type.msg, "Hello Party Pipael")],
+    messages: [Msg("Best Server EU West", Type.msg, "Welcome to the INSTANT Chat")],
     inp: "",
     user: null,
     upload: null,
     file: null,
-    //users: [{name: 1, link: "sefsdf"}, {name: 1, link: "sefsdf"}, {name: 1, link: "sefsdf"}],
     users: [1, 2, 3, 4],
     checkedUsers: [],
     Type
   },
   methods: {
     processFile: function (event) { this.upload = event.target.files[0] },
+    // Send a File
     send: function (event) {
       if (this.upload) {
         let reader = new FileReader();
 
         reader.onloadend = (e) => {
-          // The file's text will be printed here
-          // console.log(e.target.result)
           this.file = { bin: e.target.result, name: this.upload.name }
           this.socket()
         };
@@ -35,6 +33,7 @@ var app = new Vue({
         this.socket()
       }
     },
+    // SendmTextMessage
     socket: function (params) {
       socket.emit('chat message', {
         to: this.checkedUsers,
@@ -48,6 +47,7 @@ var app = new Vue({
       this.checkedUsers = []
     }
   },
+  //Observe the messages and scroll down to actual message
   watch: {
     messages: function (params) {
       Vue.nextTick(function () {
@@ -56,6 +56,7 @@ var app = new Vue({
       })
     }
   },
+  //When Page was loaded get Username and Userlist 
   created: function () {
     this.user = localStorage.getItem("user");
     socket.emit('login', { username: this.user });
@@ -63,10 +64,11 @@ var app = new Vue({
   }
 });
 
+//Recive a Chatmessage and push it to the other Messages
 socket.on('chat message', function (msg) {
   app.$data.messages.push(msg)
 });
-
+//Recive the Userlist
 socket.on('user', function (data) {
   app.$data.messages.push(Msg(data.username, Type.user, data.text))
   app.$data.users = data.userList
