@@ -1,3 +1,6 @@
+/*
+  Daniel Menlicki 762399, Jonathan Schärtel 762378
+*/
 //Connection to Server
 var socket = io.connect('http://localhost:3000');
 
@@ -16,7 +19,7 @@ var app = new Vue({
   },
   methods: {
     processFile: function (event) { this.upload = event.target.files[0] },
-    // Send a File
+    // Check if its a File Message
     send: function (event) {
       if (this.upload) {
         let reader = new FileReader();
@@ -33,7 +36,7 @@ var app = new Vue({
         this.socket()
       }
     },
-    // SendmTextMessage
+    // Send Messages top Server
     socket: function (params) {
       socket.emit('chat message', {
         to: this.checkedUsers,

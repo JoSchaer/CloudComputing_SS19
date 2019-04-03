@@ -1,3 +1,7 @@
+/*
+  Daniel Menlicki 762399, Jonathan Schärtel 762378
+*/
+
 var socket = io.connect('http://localhost:3000');
 
 var app = new Vue({
@@ -6,6 +10,7 @@ var app = new Vue({
         user: ""
     },
     methods: {
+        //Get Usename and Send to Server
         login: function (event) {
 
             if(this.user.length < 4){

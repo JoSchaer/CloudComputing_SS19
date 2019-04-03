@@ -1,3 +1,6 @@
+/*
+  Daniel Menlicki 762399, Jonathan Schärtel 762378
+*/
 
 //Enumeration
 var Type = Object.freeze({ msg: 0, user: 1 })

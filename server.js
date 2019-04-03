@@ -1,3 +1,7 @@
+/*
+  Daniel Menlicki 762399, Jonathan Schärtel 762378
+*/
+
 var express = require('express');
 var socket = require('socket.io');
 var defs = require('./public/defs');
@@ -6,7 +10,7 @@ var app = express();
 var server = app.listen(3000, function () {
   console.log(' listening on Port 3000')
 })
-
+//Default location for Files
 app.use(express.static('public'));
 app.use('favicon.*', express.static('public'));
 
@@ -16,7 +20,7 @@ var userList = {};
 //functions for connectet Users
 io.on('connection', function (client) {
 
-  
+  //recive a chat message and send it to the clients
   client.on('chat message', function (data) {
     let recipients = data.to
 
@@ -33,6 +37,7 @@ io.on('connection', function (client) {
     }
   })
 
+  //get Logindata from a new Client
   client.on('login', function (data) {
     let username = data.username
     console.log(username + ' connected to the Chat');
@@ -41,6 +46,7 @@ io.on('connection', function (client) {
     user(username, defs.UserEvent.join)
   });
 
+  //Delete disconnected Client
   client.on('disconnect', (params) => {
     let username = userList[client.id]
     if (!username) return // hack: login page leave wont display disconnect
@@ -51,6 +57,7 @@ io.on('connection', function (client) {
 
 })
 
+//Check if User connect/disconnect and send specific Message to all users
 function user(username, ev) {
   let text;
   switch (ev) {
