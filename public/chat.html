@@ -13,8 +13,8 @@
 
     <div class="column" id="informationPanel">
 
-      <h1 class="title">ONLINE USERS</h1>
-      <h2 class="subtitle">{{user}}</h2>
+      <h1 class="title" id="heading">ONLINE USERS</h1>
+      <h2 class="subtitle" id="userName">YOU ARE: {{user}}</h2>
       <ul>
         <li v-for="(v,k) in users">
           <input :id="k" :value="k" type="checkbox" v-model="checkedUsers" />
@@ -28,7 +28,7 @@
     <div class="column">
       <div class="container h" id="chat">
         <ul>
-          <li v-for="msg in messages" :class="[msg.type != Type.msg ? 'notification':'']">
+          <li v-for="msg in messages" :class="[msg.type != Type.msg ? 'notification is-warning':'']" id="msg">
             <span
               class="tag">{{ new Date(msg.timestamp).toLocaleDateString('de-DE', { year: '2-digit', month: '2-digit', day: '2-digit', hour:'2-digit', minute:'2-digit'}) }}</span>
             <span :data-id="msg.username" class="tag is-link">{{msg.username}}</span>
