@@ -2,7 +2,8 @@
   Daniel Menlicki 762399, Jonathan Schärtel 762378
 */
 //Connection to Server
-var socket = io.connect('http://localhost:3000');
+let port = process.env.PORT || 3000;
+var socket = io.connect(port);
 
 //Generate new Vue Object
 var app = new Vue({

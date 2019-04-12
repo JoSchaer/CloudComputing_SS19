@@ -1,8 +1,8 @@
 /*
   Daniel Menlicki 762399, Jonathan Schärtel 762378
 */
-
-var socket = io.connect('http://localhost:3000');
+let port = process.env.PORT || 3000;
+var socket = io.connect(port);
 
 var app = new Vue({
     el: '#abb',
