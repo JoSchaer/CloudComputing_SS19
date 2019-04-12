@@ -2,8 +2,9 @@
   Daniel Menlicki 762399, Jonathan Schärtel 762378
 */
 //Connection to Server
-let port = process.env.PORT || 3000;
-var socket = io.connect(port);
+var socket = io();
+
+const io = require('socket.io-client')
 
 //Generate new Vue Object
 var app = new Vue({
