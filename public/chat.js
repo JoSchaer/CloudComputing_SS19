@@ -4,7 +4,7 @@
 //Connection to Server
 var socket = io();
 
-const io = require('socket.io-client')
+
 
 //Generate new Vue Object
 var app = new Vue({
