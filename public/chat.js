@@ -19,8 +19,8 @@ var app = new Vue({
   },
   methods: {
     processFile: function (event) { this.upload = event.target.files[0] },
-    // Check if its a File Message
     send: function (event) {
+      // Check if its a File Message
       if (this.upload) {
         let reader = new FileReader();
 

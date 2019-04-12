@@ -7,8 +7,10 @@ var socket = require('socket.io');
 var defs = require('./public/defs');
 
 var app = express();
-var server = app.listen(3000, function () {
-  console.log(' listening on Port 3000')
+
+let port = process.env.PORT || 3000;
+var server = app.listen(port, function () {
+  console.log(' listening on Port ' + port)
 })
 //Default location for Files
 app.use(express.static('public'));
