@@ -23,7 +23,6 @@ const server = app.listen(port, function () {
 app.use(express.static('public'));
 app.use('favicon.*', express.static('public'));
 
-
 const io = socket(server);
 
 const userList = {};
