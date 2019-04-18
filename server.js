@@ -1,43 +1,66 @@
 /*
   Daniel Menlicki 762399, Jonathan Schärtel 762378
 */
+const express = require('express');
+const socket = require('socket.io');
+const defs = require('./public/defs');
 
-var express = require('express');
-var socket = require('socket.io');
-var defs = require('./public/defs');
+const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 
-var app = express();
+const toneAnalyzer = new ToneAnalyzerV3({
+  version: '2017-09-21',
+  iam_apikey: 'L7fu8VvlT91ra38Z1THvK2ZRF_INwQ8YeqNI5FkbKEBr',
+  url: 'https://gateway-fra.watsonplatform.net/tone-analyzer/api'
+});
+
+const app = express();
 
 let port = process.env.PORT || 3000;
-var server = app.listen(port, function () {
+const server = app.listen(port, function () {
   console.log(' listening on Port ' + port)
 })
 //Default location for Files
 app.use(express.static('public'));
 app.use('favicon.*', express.static('public'));
 
-var io = socket(server);
 
-var userList = {};
+const io = socket(server);
+
+const userList = {};
 //functions for connectet Users
 io.on('connection', function (client) {
 
   //recive a chat message and send it to the clients
   client.on('chat message', function (data) {
-    let recipients = data.to
 
-    if (recipients.length > 0) {
-      let names = []
-      recipients.forEach(r => names.push(userList[r]))
+    toneAnalyzer.tone({
+      tone_input: { 'text': data.msg.text },
+      content_type: 'application/json',
+    })
+      .then(toneAnalysis => {
+        console.log(JSON.stringify(toneAnalysis, null, 2));
+        data.msg.text+= ` mood: ${toneAnalysis.document_tone.tones[0].tone_name}` 
+      })
+      .catch(err => {
+        console.log('error:', err);
+      })
+      .finally(() => {
+        let recipients = data.to
 
-      data.msg.username += ` --privat--> ${names.join(', ')}`
+        if (recipients.length > 0) {
+          let names = []
+          recipients.forEach(r => names.push(userList[r]))
 
-      if (!recipients.includes(client.id)) recipients.push(client.id) // sent also to back to self 
-      recipients.forEach(r => { io.to(r).emit('chat message', data.msg) });
-    } else {
-      io.emit('chat message', data.msg)
-    }
-  })
+          data.msg.username += ` --privat--> ${names.join(', ')}`
+
+          if (!recipients.includes(client.id)) recipients.push(client.id) // sent also to back to self 
+          recipients.forEach(r => { io.to(r).emit('chat message', data.msg) });
+        } else {
+          io.emit('chat message', data.msg)
+        }
+      });
+
+  });
 
   //get Logindata from a new Client
   client.on('login', function (data) {
@@ -59,6 +82,8 @@ io.on('connection', function (client) {
 
 })
 
+
+
 //Check if User connect/disconnect and send specific Message to all users
 function user(username, ev) {
   let text;
@@ -75,4 +100,3 @@ function user(username, ev) {
   }
   io.emit('user', { username, userList, text })
 }
-
