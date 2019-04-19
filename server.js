@@ -43,7 +43,7 @@ io.on('connection', function (client) {
       .catch(err => {
         console.log('error:', err);
       })
-      .finally(() => {
+      .then(() => {
         let recipients = data.to
 
         if (recipients.length > 0) {
