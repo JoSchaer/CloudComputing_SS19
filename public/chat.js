@@ -82,3 +82,26 @@ socket.on('user', function (data) {
 // socket.on('userList', data => app.$data.users = data.userList);
 
 var objDiv = document.getElementById("chat");
+
+const LanguageTranslatorV3 = require('watson-developer-cloud/language-translator/v3');
+
+const languageTranslator = new LanguageTranslatorV3({
+  version: '2019-04-02',
+  iam_apikey: '2SrA47UDouSRCdULtjrVJNOSo1gXXK7MoJRFiCKQ0dxy',
+  url: 'https://gateway-lon.watsonplatform.net/language-translator/api'
+});
+
+//Text that has to be translated & id of language
+const translateParams = {
+  text: msg,
+  model_id: 'en-es',
+};
+
+//translation of text is set in console
+languageTranslator.translate(translateParams)
+    .then(translationResult => {
+      console.log(JSON.stringify(translationResult, null, 2));
+    })
+    .catch(err => {
+      console.log('error:', err);
+    });
